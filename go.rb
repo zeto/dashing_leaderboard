@@ -18,6 +18,6 @@ post '/bet' do
   redirect '/'
 end
 
-def bet(:name, balance, amount_at_risk)
+def bet(name, balance, amount_at_risk)
   $redis.zadd('gamblers', params[:amount_at_risk].to_i + params[:balance].to_i, params[:name])
 end
