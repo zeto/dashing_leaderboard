@@ -2,7 +2,7 @@ require 'benchmark'
 require './bookie'
 
 def random_word()
-  chars = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ23456789'
+  chars = 'abcdefghjkmnpqrstuvwxyz'
   word = ''
   4.times { |i| word << chars[rand(chars.length)] }
   word
