@@ -1,23 +1,20 @@
 require 'sinatra'
 require 'redis'
 
+require './bookie'
+
 configure do
-  $redis = Redis.new(:host => 'localhost', :port => 6379)
-  raise 'Cant connect to Redis' unless $redis
+  Bookie.are_you_redis?
 end
 
 get '/' do
-  @gamblers = $redis.zrevrange("gamblers", 0, -1, :with_scores => 1)
+  @gamblers = Bookie.gamblers
   erb :index
 end
 
 post '/bet' do
   if params[:amount_at_risk] && params[:balance] && params[:name]
-      bet(params[:name], params[:balance], params[:amount_at_risk])
+      Bookie.bet(params[:name], params[:balance].to_i, params[:amount_at_risk].to_i)
   end
   redirect '/'
-end
-
-def bet(name, balance, amount_at_risk)
-  $redis.zadd('gamblers', params[:amount_at_risk].to_i + params[:balance].to_i, params[:name])
 end
