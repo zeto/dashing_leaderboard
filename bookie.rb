@@ -1,3 +1,5 @@
+require 'redis'
+
 module Bookie
 
   def self.are_you_redis?
