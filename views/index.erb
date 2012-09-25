@@ -1,0 +1,16 @@
+Here are thy Gamblers.
+
+<% if @gamblers %>
+  <ol>
+    <% @gamblers.each do |g| %>
+      <li><%= g %></li>
+    <% end %>
+  </ol>
+<% end %>
+
+<form action='bet' method='post' style='margin-top: 50px;'>
+  Name: <input type="text" name='name' /><br>
+  Balance: <input type='text' name='balance'><br>
+  Amount at risk: <input type='text' name='amount_at_risk'><br>
+  <input type="submit" value="bet">
+</form>
