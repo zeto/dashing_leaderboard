@@ -8,15 +8,13 @@ def random_word()
   word
 end
 
-if __FILE__ == $PROGRAM_NAME
-  Bookie.are_you_redis?
+Bookie.are_you_redis?
 
-  a = Benchmark.measure do
-    5000.times do
-      Bookie.bet(random_word, rand(1000), rand(1000))
-    end
+what_a_fast_bookie = Benchmark.measure do
+  5000.times do
+    Bookie.bet(random_word, rand(1000), rand(1000))
   end
-
-  puts a
 end
+
+puts what_a_fast_bookie
 
